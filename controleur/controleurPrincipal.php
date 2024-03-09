@@ -1,23 +1,33 @@
 <?php
 
-function controleurPrincipal($action) {
-    $lesActions = array();
-    $lesActions["defaut"] = "listeRestos.php";
-    $lesActions["liste"] = "listeRestos.php";
-    $lesActions["detail"] = "detailResto.php";
-    $lesActions["recherche"] = "rechercheResto.php";
-    $lesActions["connexion"] = "connexion.php";
-    $lesActions["deconnexion"] = "deconnexion.php";
-    $lesActions["profil"] = "monProfil.php";
-    $lesActions["cgu"] = "cgu.php";
-    $lesActions["inscription"] = "inscription.php";
-    $lesActions["updProfil"] = "mdpModif.php";
+class MainController {
 
-    if (array_key_exists($action, $lesActions)) {
-        return $lesActions[$action];
-    } 
-    else {
-        return $lesActions["defaut"];
+    private $actions;
+
+    public function __construct() {
+        $this->actions = array(
+            "defaut" => "listeRestos.php",
+            "liste" => "listeRestos.php",
+            "detail" => "detailResto.php",
+            "recherche" => "rechercheResto.php",
+            "connexion" => "connexion.php",
+            "deconnexion" => "deconnexion.php",
+            "profil" => "monProfil.php",
+            "cgu" => "cgu.php",
+            "inscription" => "inscription.php",
+            "updProfil" => "mdpModif.php"
+        );
+    }
+
+    public function execute($action) {
+        if (array_key_exists($action, $this->actions)) {
+            return $this->actions[$action];
+        } else {
+            return $this->actions["defaut"];
+        }
     }
 }
 
+$controller = new MainController();
+$action = "detail";
+$page = $controller->execute($action);

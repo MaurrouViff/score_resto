@@ -90,21 +90,40 @@ function getRestosAimesByMailU($mailU) {
     return $resultat;
 }
 
-function getRestoByScore($mailU) {
+function getRestosByScore($idR) {
     $resultat = array();
 
     try {
         $cnx = connexionPDO();
-        $req = $cnx->prepare("");
-        $req->bindValue(':mailU', $mailU, PDO::PARAM_STR);
+        $req = $cnx->prepare("select * from resto where idR=1 or idR=2 or idR=3 or idR=4");
+        $req->bindValue(':idR', $idR, PDO::PARAM_INT);
         $req->execute();
 
-        $resultat = $req->fetchAll(PDO::FETCH_ASSOC);
+        $resultat = $req->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         print "Erreur !: " . $e->getMessage();
         die();
     }
     return $resultat;
+}
+
+function getRestoByType($type){
+    $resultat = array();
+
+    try {
+        $cnx = connexionPDO();
+        $req = $cnx->prepare("select r.* from resto r, proposer p WHERE r.idR=p.idR AND p.idTC=:idTC");
+        $req->bindValue(':idTC', $type, PDO::PARAM_INT);
+        $req->execute();
+
+        $resultat = $req->fetchAll(PDO::FETCH_ASSOC);
+
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage();
+        die();
+    }
+    return $resultat;
+
 }
 
 if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
@@ -122,7 +141,7 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
 
     echo "getRestosByAdresse(voieAdrR, cpR, villeR) : \n";
     print_r(getRestosByAdresse("Ravel", "33000", "Bordeaux"));
-    
+
     echo "getRestosAimesByMailU(mailU) : \n";
     print_r(getRestosAimesByMailU("test@bts.sio"));
 }
