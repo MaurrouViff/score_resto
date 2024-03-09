@@ -1,8 +1,7 @@
-<h1>Top 4 des meilleurs restaurants ça tourne mal explication</h1>
-<?php
-
-?>
-
+<h1>Top 4 des meilleurs restaurants ça tourne mal explication, le 3ème va vous surprendre</h1>
+<form action="./?action=listeMeilleursResto" method="POST">
+    <input type="submit" name="liste-resto byScore" value="Voir la liste des meilleurs restaurants">
+</form>
 
 <h1>Liste des restaurants</h1>
 
@@ -29,7 +28,7 @@ for ($i = 0; $i < count($listeRestos); $i++) {
             <?= $listeRestos[$i]["villeR"] ?>
         </div>
         <div class="tagCard">
-            <ul id="tagFood">		
+            <ul id="tagFood">
 
 
             </ul>
