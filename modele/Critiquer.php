@@ -34,6 +34,40 @@ class Critiquer extends Database {
         }
         return ($req->rowCount() > 0) ? $resultat["avg(note)"] : 0;
     }
+
+    public function addCritique($idR, $mailU, $note, $critiquer) {
+        try {
+            $cnx = $this->getConnection();
+            $req = $cnx->prepare("insert into critiquer(idR, mailU, note, commentaire) values(:idR, :mailU, :note, :critiquer)");
+            $req->bindValue(':idR', $idR, PDO::PARAM_INT);
+            $req->bindValue(':mailU', $mailU, PDO::PARAM_STR);
+            $req->bindValue(':critiquer', $critiquer, PDO::PARAM_STR);
+            $req->bindValue(':note', $note, PDO::PARAM_INT);
+            $req->execute();
+
+        } catch (PDOException $e) {
+            print "Erreur !: " . $e->getMessage();
+            die();
+        }
+    }
+
+    public function delCritique($idR, $mailU) {
+
+        try {
+            $cnx = $this->getConnection();
+            $req = $cnx->prepare("delete from critiquer where idR=:idR and mailU=:mailU");
+            $req->bindValue(':idR', $idR,PDO::PARAM_INT);
+            $req->bindValue(':mailU', $mailU,PDO::PARAM_STR);
+
+            $req->execute();
+
+        } catch (PDOException $e) {
+            print "Erreur !: " . $e->getMessage();
+            die();
+        }
+
+    }
+
 }
 
 if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {

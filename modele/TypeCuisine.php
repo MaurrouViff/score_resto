@@ -68,6 +68,40 @@ class TypeCuisine extends Database {
         return $resultat;
     }
 
+    public function delTypeCuisine($idTC, $mailU) {
+        $resultat = array();
+
+        try {
+            $cnx = $this->getConnection();
+            $req = $cnx->prepare("DELETE FROM preferer WHERE idTC = :idTC AND mailU = :mailU");
+            $req->bindValue(":idTC", $idTC, PDO::PARAM_INT);
+            $req->bindValue(":mailU", $mailU, PDO::PARAM_STR);
+            $req->execute();
+        } catch (PDOException $e) {
+            print "Erreur !: " . $e->getMessage();
+            die();
+        }
+
+        return $resultat;
+    }
+
+    public function addTypeCuisine($idTC, $mailU) {
+        $resultat = array();
+
+        try {
+            $cnx = $this->getConnection();
+            $req = $cnx->prepare("INSERT INTO preferer (idTC, mailU) VALUES (:idTC, :mailU)");
+            $req->bindValue(":idTC", $idTC, PDO::PARAM_INT);
+            $req->bindValue(":mailU", $mailU, PDO::PARAM_STR);
+            $req->execute();
+        } catch (PDOException $e) {
+            print "Erreur !: " . $e->getMessage();
+            die();
+        }
+
+        return $resultat;
+    }
+
 }
 
 if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {

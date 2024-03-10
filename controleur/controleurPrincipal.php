@@ -16,7 +16,12 @@ class MainController {
             "cgu" => "cgu.php",
             "inscription" => "inscription.php",
             "updProfil" => "mdpModif.php",
-            "listeMeilleursResto" => "meilleurResto.php"
+            "listeMeilleursResto" => "meilleurResto.php",
+            "aimer" => "aimer.php",
+            "supprimerCritique" => "delCritique.php",
+            "delResto" => "aimer.php",
+            "delCuisine" => "deltypeCuisine.php",
+            "addCuisine" => "addCuisine.php"
         );
     }
 

@@ -70,13 +70,32 @@
 
 <h2 id="crit">Critiques</h2>
 
+<?php if ($authentification->isLoggedOn()) { ?>
+    <form action="" method="POST">
+        <textarea name="critiquer-set" placeholder="Écrivez une critique..."></textarea>
+        <select name="note" id="">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select> <br />
+        <input type="submit" value="Confirmer">
+
+    </form>
+<?php } ?>
+
 <ul id="critiques">
     <?php for ($i = 0; $i < count($critiques); $i++) { ?>
         <li>
             <span>
-                <?= $critiques[$i]["mailU"] ?> 
+                <?= $critiques[$i]["mailU"] ?>
                 <?php if ($critiques[$i]["mailU"] == $mailU) { ?>
+
                     <a href='./?action=supprimerCritique&idR=<?= $unResto['idR']; ?>'>Supprimer</a>
+
+
                 <?php } ?>
             </span>
             <div>

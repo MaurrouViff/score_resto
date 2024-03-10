@@ -39,6 +39,13 @@ $aimer = $aimerManager->getAimerById($mailU, $idR);
 $critiques = $critiquerManager->getCritiquerByIdR($idR);
 
 
+if (isset($_POST['critiquer-set'])) {
+    $critiquer = $_POST['critiquer-set'];
+    $note = $_POST['note'];
+    $critiquerManager->addCritique($idR, $mailU, $note, $critiquer);
+    header('Location: ?action=detail&idR='.$idR.'');
+}
+
 
 // appel du script de vue qui permet de gerer l'affichage des donnees
 $titre = "detail d'un restaurant";

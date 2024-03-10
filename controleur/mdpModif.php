@@ -8,10 +8,18 @@ include_once "$racine/modele/Authentification.php";
 include_once "$racine/modele/Utilisateur.php";
 include_once "$racine/modele/Resto.php";
 include_once "$racine/modele/Aimer.php";
-
-$pseudoU = "";
+include_once "$racine/modele/TypeCuisine.php";
+$idR = $_GET["idR"];
+$aimer = new Aimer();
 $authentification = new Authentification();
+$typeCuisine = new TypeCuisine();
 $mailU = $authentification->getMailULoggedOn();
+
+
+
+$listeDesCuisine = $typeCuisine->getTypesCuisine();
+$pseudoU = "";
+$lesTypesCuisine = $typeCuisine->getTypesCuisineByIdR($idR);
 
 // Création du menu burger
 $menuBurger = array();
