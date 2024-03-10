@@ -10,7 +10,7 @@ include_once "$racine/modele/bd.critiquer.inc.php";
 
 // appel des fonctions permettant de recuperer les donnees utiles a l'affichage
 $listeRestos = getRestos();
-$bestRestos = getRestosByNote();
+$bestRestos = getRestosByScore();
 
 
 // traitement si necessaire des donnees recuperees

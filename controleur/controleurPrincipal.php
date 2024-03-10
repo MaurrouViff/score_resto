@@ -15,7 +15,8 @@ class MainController {
             "profil" => "monProfil.php",
             "cgu" => "cgu.php",
             "inscription" => "inscription.php",
-            "updProfil" => "mdpModif.php"
+            "updProfil" => "mdpModif.php",
+            "listeMeilleursResto" => "meilleurResto.php"
         );
     }
 
