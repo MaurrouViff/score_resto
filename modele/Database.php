@@ -5,6 +5,7 @@ class Database {
     private $mdp = "root";
     private $bd = "bd_resto_view";
     private $serveur = "localhost";
+    private $charset = "UTF8";
     private $conn;
 
     public function __construct() {
@@ -13,7 +14,7 @@ class Database {
 
     private function connect() {
         try {
-            $this->conn = new PDO("mysql:host={$this->serveur};dbname={$this->bd};charset=UTF8", $this->login, $this->mdp);
+            $this->conn = new PDO("mysql:host={$this->serveur};dbname={$this->bd};charset={$this->charset}", $this->login, $this->mdp);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             print "Erreur de connexion PDO : " . $e->getMessage();
