@@ -1,4 +1,4 @@
-<!-- vueListeRestos.php -->
+
 <h1>Liste des restaurants</h1>
 
 <?php foreach ($listeRestos as $resto) : ?>

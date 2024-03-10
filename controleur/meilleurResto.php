@@ -10,12 +10,13 @@ include_once "$racine/modele/Critiquer.php";
 
 // Création d'une instance de la classe Resto
 $resto = new Resto();
+$photoManager = new Photo();
 $authentification = new Authentification();
 // Récupération des données GET, POST et SESSION
-
+$idR = $_GET['idR'];
 // Appel des fonctions permettant de récupérer les données utiles à l'affichage
 $listeRestos = $resto->getRestos();
-$bestRestos = $resto->getRestosByScore();
+$bestRestos = $resto->getRestosByScore($idR);
 
 // Traitement si nécessaire des données récupérées
 

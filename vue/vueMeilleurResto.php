@@ -1,9 +1,8 @@
 <h1>Les 4 meilleurs restaurants ça tourne bien pas d'explication + giveaway handspinner</h1>
 
 <?php
-for ($i = 0; $i < 4; $i++) {
-    $lesPhotos = getPhotosByIdR($bestRestos[$i]['idR']);
-    $img = $bestRestos[$i]['idR'];
+for ($i = 0; $i <= 4; $i++) {
+    $lesPhotos = $photoManager->getPhotosByIdR($bestRestos[$i]['idR']);
     ?>
     <div class="card">
         <div class="photoCard">
