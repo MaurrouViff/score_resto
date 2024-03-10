@@ -3,17 +3,21 @@
 if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     $racine = "..";
 }
-include_once "$racine/modele/bd.utilisateur.inc.php";
 
-// creation du menu burger
+include_once "$racine/modele/Utilisateur.php";
+
+// Création d'une instance de la classe Utilisateur
+$utilisateur = new Utilisateur();
+$authentification = new Authentification();
+// Création du menu burger
 $menuBurger = array();
-$menuBurger[] = Array("url"=>"./?action=connexion","label"=>"Connexion");
-$menuBurger[] = Array("url"=>"./?action=inscription","label"=>"Inscription");
-
+$menuBurger[] = Array("url" => "./?action=connexion", "label" => "Connexion");
+$menuBurger[] = Array("url" => "./?action=inscription", "label" => "Inscription");
 
 $inscrit = false;
-$msg="";
-// recuperation des donnees GET, POST, et SESSION
+$msg = "";
+
+// Récupération des données GET, POST et SESSION
 if (isset($_POST["mailU"]) && isset($_POST["mdpU"]) && isset($_POST["pseudoU"])) {
 
     if ($_POST["mailU"] != "" && $_POST["mdpU"] != "" && $_POST["pseudoU"] != "") {
@@ -21,30 +25,28 @@ if (isset($_POST["mailU"]) && isset($_POST["mdpU"]) && isset($_POST["pseudoU"]))
         $mdpU = $_POST["mdpU"];
         $pseudoU = $_POST["pseudoU"];
 
-        // enregistrement des donnees
-        $ret = addUtilisateur($mailU, $mdpU, $pseudoU);
+        // Enregistrement des données
+        $ret = $utilisateur->addUtilisateur($mailU, $mdpU, $pseudoU);
         if ($ret) {
             $inscrit = true;
         } else {
-            $msg = "l'utilisateur n'a pas été enregistré.";
+            $msg = "L'utilisateur n'a pas été enregistré.";
         }
-    }
- else {
-    $msg="Renseigner tous les champs...";    
+    } else {
+        $msg = "Renseigner tous les champs...";
     }
 }
 
 if ($inscrit) {
-    // appel du script de vue qui permet de gerer l'affichage des donnees
+    // Appel du script de vue qui permet de gérer l'affichage des données
     $titre = "Inscription confirmée";
     include "$racine/vue/entete.html.php";
     include "$racine/vue/vueConfirmationInscription.php";
     include "$racine/vue/pied.html.php";
 } else {
-    // appel du script de vue qui permet de gerer l'affichage des donnees
-    $titre = "Inscription pb";
+    // Appel du script de vue qui permet de gérer l'affichage des données
+    $titre = "Inscription problème";
     include "$racine/vue/entete.html.php";
     include "$racine/vue/vueInscription.php";
     include "$racine/vue/pied.html.php";
 }
-?>

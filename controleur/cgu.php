@@ -2,7 +2,7 @@
 if ( $_SERVER["SCRIPT_FILENAME"] == __FILE__ ){
     $racine="..";
 }
-
+$authentification = new Authentification();
 
 // recuperation des donnees GET, POST, et SESSION
 

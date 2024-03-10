@@ -2,7 +2,7 @@
 
 include "getRacine.php";
 include "$racine/controleur/controleurPrincipal.php";
-include_once "$racine/modele/authentification.inc.php"; // pour pouvoir utiliser isLoggedOn()
+include_once "$racine/modele/Authentification.php"; // pour pouvoir utiliser isLoggedOn()
 
 $controller = new MainController();
 

@@ -10,7 +10,10 @@ include_once "$racine/modele/bd.photo.inc.php";
 $menuBurger = array();
 $menuBurger[] = Array("url"=>"./?action=recherche&critere=nom","label"=>"Recherche par nom");
 $menuBurger[] = Array("url"=>"./?action=recherche&critere=adresse","label"=>"Recherche par adresse");
-
+$restoManager = new Resto();
+$typeCuisine = new TypeCuisine();
+$photoManager = new Photo();
+$authentification = new Authentification();
 // critere de recherche par defaut
 $critere = "nom";
 if (isset($_GET["critere"])) {
@@ -49,11 +52,11 @@ if(isset($_POST["tabIdTC"])){
 switch($critere) {
     case 'nom':
         // recherche par nom
-        $listeRestos = getRestosByNomR($nomR);
+        $listeRestos = $restoManager->getRestosByNomR($nomR);
         break;
     case 'adresse':
         // recherche par adresse
-        $listeRestos = getRestosByAdresse($voieAdrR, $cpR, $villeR);
+        $listeRestos = $restoManager->getRestosByAdresse($voieAdrR, $cpR, $villeR);
         break;
     
 }
@@ -71,6 +74,3 @@ if (!empty($_POST)) {
     include "$racine/vue/vueResultRecherche.php";
 }
 include "$racine/vue/pied.html.php";
-
-
-?>

@@ -3,8 +3,9 @@
 if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     $racine = "..";
 }
-include_once "$racine/modele/bd.aimer.inc.php";
-
+include_once "$racine/modele/Aimer.php";
+$authentification = new Authentification();
+$aimerManager = new Aimer();
 
 // recuperation des donnees GET, POST, et SESSION
 $idR = $_GET["idR"];
@@ -14,19 +15,18 @@ $idR = $_GET["idR"];
 
 
 
-$mailU = getMailULoggedOn();
+$mailU = $authentification->getMailULoggedOn();
 if ($mailU != "") {
-    $aimer = getAimerById($mailU, $idR);
+    $aimer = $aimerManager->getAimerById($mailU, $idR);
 
 // traitement si necessaire des donnees recuperees
     ;
     if ($aimer == false) {
-        addAimer($mailU, $idR);
+        $aimerManager->addAimer($mailU, $idR);
     } else {
-        delAimer($mailU, $idR);
+        $aimerManager->delAimer($mailU, $idR);
     }
 }
 
 // redirection vers le referer
 header('Location: ' . $_SERVER['HTTP_REFERER']);
-?>

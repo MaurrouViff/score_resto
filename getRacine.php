@@ -6,4 +6,3 @@
  * and open the template in the editor.
  */
 $racine = dirname(__FILE__);
-?>

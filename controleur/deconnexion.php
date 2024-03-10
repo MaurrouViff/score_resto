@@ -1,23 +1,24 @@
 <?php
-if ( $_SERVER["SCRIPT_FILENAME"] == __FILE__ ){
-    $racine="..";
+
+if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
+    $racine = "..";
 }
-include_once "$racine/modele/authentification.inc.php";
 
-// recuperation des donnees GET, POST, et SESSION
+include_once "$racine/modele/Authentification.php";
 
-// appel des fonctions permettant de recuperer les donnees utiles a l'affichage 
+// Création d'une instance de Authentification
+$authentification = new Authentification();
 
-// traitement si necessaire des donnees recuperees
-logout();
+// Récupération des données GET, POST et SESSION
 
-                
+// Appel des fonctions permettant de récupérer les données utiles à l'affichage
 
-// appel du script de vue qui permet de gerer l'affichage des donnees
-$titre = "authentification";
+// Traitement si nécessaire des données récupérées
+$authentification->logout();
+
+// Appel du script de vue qui permet de gérer l'affichage des données
+$titre = "Authentification";
 include "$racine/vue/entete.html.php";
 include "$racine/vue/vueAuthentification.php";
 include "$racine/vue/pied.html.php";
 
-
-?>
